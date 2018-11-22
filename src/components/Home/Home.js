@@ -21,11 +21,13 @@ class Home extends Component {
                     </div>
                     <Log/>
                 </div>
-                <div className="col-sm-10 col-sm-offset-1">
+                <div className="col-sm-12">
                     <div className="hr-divider m-t m-b-md">
                         <h3 className="hr-divider-content hr-divider-heading">Información General</h3>
                     </div>
-                    <Graphs/>
+                    <div className="col-sm-6">
+                        <Graphs/>
+                    </div>
                 </div>
             </div>
         );
