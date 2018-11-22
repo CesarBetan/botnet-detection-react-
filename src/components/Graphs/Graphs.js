@@ -73,11 +73,12 @@ class Graphs extends Component {
             ]
         };
         return (
-            <div className="col-sm-12">
+            <div className="col-sm-12 chart-container">
                 <div className="chart">
                     {console.log(chartData)}
                     <Bar
                         data={chartData}
+                        height={400}
                         options={{
                             title:{
                                 display:true,
@@ -86,8 +87,9 @@ class Graphs extends Component {
                             },
                             legend:{
                                 display:true,
-                                position:'right'
-                            }
+                                position:'bottom'
+                            },
+                            maintainAspectRatio: false,
                         }}
                     />
                 </div>
