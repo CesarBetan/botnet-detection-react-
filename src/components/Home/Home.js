@@ -39,6 +39,12 @@ class Home extends Component {
                       </div>
                     </div>
                 </div>
+                <div className="col-sm-10 col-sm-offset-1 logger">
+                    <div className="hr-divider m-t m-b-md">
+                        <h3 className="hr-divider-content hr-divider-heading">Logger</h3>
+                    </div>
+                    Ingue su madre
+                </div>
             </div>
         );
     }

@@ -49,7 +49,7 @@ class Map extends Component {
     componentDidMount() {
       const google = window.google;
       let center = {
-        lat: 0,
+        lat: 45,
         lng: 0,
       }
       this.map = new google.maps.Map(this.refs.map, {
@@ -57,7 +57,7 @@ class Map extends Component {
         fullscreenControl: false,
         streetViewControl: false,
         center: center,
-        zoom: 1.1
+        zoom: 1.5
       });
     }
 
