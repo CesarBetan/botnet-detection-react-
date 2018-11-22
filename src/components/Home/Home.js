@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './Home.css';
-import Log from "../Log/Log";
-import Graphs from "../Graphs/Graphs";
-import Map from '../Map/Map';
+import Log from "../Log/index";
+import Logger from "../Logger/index";
+import Graphs from "../Graphs/index";
+import Map from '../Map/index';
 
 class Home extends Component {
 
@@ -43,7 +44,7 @@ class Home extends Component {
                     <div className="hr-divider m-t m-b-md">
                         <h3 className="hr-divider-content hr-divider-heading">Logger</h3>
                     </div>
-                    Ingue su madre
+                    <Logger/>
                 </div>
             </div>
         );

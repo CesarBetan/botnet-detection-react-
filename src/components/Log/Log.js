@@ -29,7 +29,7 @@ class Log extends Component {
 
     render(){
         return (
-            <div className="row">
+            <div className="row log">
                 <table className="table">
                     <thead>
                     <tr>
