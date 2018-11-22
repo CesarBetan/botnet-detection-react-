@@ -42,7 +42,7 @@ class Map extends Component {
             /* Update React state when message is added at Firebase Database */
             const message = snapshot.val();
             this.setState({ results: [message].concat(this.state.results) });
-            console.log(this.state.results)
+            //console.log(this.state.results)
         });
     }
 

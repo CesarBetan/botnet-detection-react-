@@ -19,7 +19,7 @@ class Log extends Component {
         /* Create reference to messages in Firebase Database */
         let messagesRef = Fire.database().ref('test_data').limitToLast(100);
         messagesRef.on('child_added', snapshot => {
-            console.log(snapshot.val());
+            //console.log(snapshot.val());
             /* Update React state when message is added at Firebase Database */
             const message = snapshot.val();
             this.setState({ messages: [message].concat(this.state.messages) });

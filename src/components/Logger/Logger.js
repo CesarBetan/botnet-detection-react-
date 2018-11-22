@@ -13,9 +13,9 @@ class Logger extends Component {
     }
 
     componentWillMount(){
-        let messagesRef = Fire.database().ref('log').limitToLast(100);
-        messagesRef.on('child_added', snapshot => {
-            console.log(snapshot.val());
+        let messagesRef = Fire.database().ref('log');
+        messagesRef.limitToLast(10).on('child_added', snapshot => {
+            //console.log(snapshot.val());
             const message = snapshot.val();
             this.setState({ messages: [message].concat(this.state.messages) });
         });

@@ -14,7 +14,7 @@ class Graphs extends Component {
     componentWillMount(){
         let messagesRef = Fire.database().ref('test_data').limitToLast(100);
         messagesRef.on('child_added', snapshot => {
-            console.log(snapshot.val());
+            //console.log(snapshot.val());
             const message = snapshot.val();
             this.setState({ messages: [message].concat(this.state.messages) });
         });
@@ -75,7 +75,6 @@ class Graphs extends Component {
         return (
             <div className="col-sm-12 chart-container">
                 <div className="chart">
-                    {console.log(chartData)}
                     <Bar
                         data={chartData}
                         height={400}

@@ -3,7 +3,7 @@ import './TableRowLogger.css';
 import moment from 'moment'
 
 const TableRowLogger = (result) => {
-    let time = moment(result.timestamp).format("DD/MM/YYYY - hh:mm a");
+    let time = moment(result.timestamp).format("DD/MM/YYYY - hh:mm:ss a");
 
     return(
         <tr>
