@@ -12,11 +12,15 @@ class Graphs extends Component {
     }
 
     componentWillMount(){
-        let messagesRef = Fire.database().ref('test_data').limitToLast(100);
-        messagesRef.on('child_added', snapshot => {
+        let messagesRef = Fire.database().ref('test_data');
+        messagesRef.limitToLast(3).on('child_added', snapshot => {
             //console.log(snapshot.val());
             const message = snapshot.val();
-            this.setState({ messages: [message].concat(this.state.messages) });
+            if(this.state.messages.length > 100){
+                this.setState({ messages: [message].concat(this.state.messages.pop()) });
+            }else{
+                this.setState({ messages: [message].concat(this.state.messages) });
+            }
         });
     }
 
@@ -25,18 +29,23 @@ class Graphs extends Component {
         let ipCount = 0;
         let portCount = 0;
         let errCount = 0;
+        let mulConCount = 0;
         registers.forEach(reg => {
             reg.reasons.forEach(r =>{
-                switch (r.reason) {
-                    case 'BAD_IP':
-                        ipCount+=r.count;
-                        break;
-                    case 'BAD_PORT':
-                        portCount+=r.count;
-                        break;
-                    case 'ERR':
-                        errCount+=r.count;
-                        break;
+                if(reg.ip !== "127.0.0.1"){
+                    switch (r.reason) {
+                        case 'BAD_IP':
+                            ipCount+=r.count;
+                            break;
+                        case 'BAD_PORT':
+                            portCount+=r.count;
+                            break;
+                        case 'ERR':
+                            errCount+=r.count;
+                            break;
+                        case 'MUL_CON':
+                            mulConCount+=r.count;
+                    }
                 }
             });
         });
@@ -70,6 +79,15 @@ class Graphs extends Component {
                         'rgba(255,206,86,0.6)'
                     ]
                 },
+                {
+                    label:'MUL_CON',
+                    data:[
+                        mulConCount
+                    ],
+                    backgroundColor:[
+                        'rgba(157,215,42,0.6)'
+                    ]
+                }
             ]
         };
         return (

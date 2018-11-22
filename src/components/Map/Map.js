@@ -71,7 +71,7 @@ class Map extends Component {
 
     placeMarkers() {
       let results = this.state.results
-      console.log(results.length)
+      //console.log(results.length)
       for(let i = 0; i < results.length; i++) {
         let coordinates = {
           lat: results[i].lat,

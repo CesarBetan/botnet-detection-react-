@@ -17,13 +17,18 @@ class Log extends Component {
 
     componentWillMount(){
         /* Create reference to messages in Firebase Database */
-        let messagesRef = Fire.database().ref('test_data').limitToLast(100);
-        messagesRef.on('child_added', snapshot => {
+        let messagesRef = Fire.database().ref('test_data');
+        messagesRef.limitToLast(3).on('child_added', snapshot => {
             //console.log(snapshot.val());
             /* Update React state when message is added at Firebase Database */
             const message = snapshot.val();
-            this.setState({ messages: [message].concat(this.state.messages) });
+            if(this.state.messages.length > 100){
+                this.setState({ messages: [message].concat(this.state.messages.pop()) });
+            }else{
+                this.setState({ messages: [message].concat(this.state.messages) });
+            }
         });
+
     }
 
 
@@ -39,7 +44,7 @@ class Log extends Component {
                         <th>Región</th>
                         <th>Razón</th>
                         <th>Contador</th>
-                        <th>Hora</th>
+                        <th>Fecha</th>
                     </tr>
                     </thead>
                     <tbody>

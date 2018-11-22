@@ -14,15 +14,21 @@ class Logger extends Component {
 
     componentWillMount(){
         let messagesRef = Fire.database().ref('log');
-        messagesRef.limitToLast(10).on('child_added', snapshot => {
+        messagesRef.limitToLast(3).on('child_added', snapshot => {
             //console.log(snapshot.val());
             const message = snapshot.val();
-            this.setState({ messages: [message].concat(this.state.messages) });
+            if(this.state.messages.length > 100){
+                this.setState({ messages: [message].concat(this.state.messages.pop()) });
+            }else{
+                this.setState({ messages: [message].concat(this.state.messages) });
+            }
         });
+
     }
 
 
     render(){
+
         return (
             <div className="row logger">
                 <table className="table">
