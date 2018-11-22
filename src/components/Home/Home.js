@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Home.css';
 import Log from "../Log/Log";
 import Graphs from "../Graphs/Graphs";
+import Map from '../Map/Map';
 
 class Home extends Component {
 
@@ -9,8 +10,12 @@ class Home extends Component {
         super(props);
         this.state = {
             value: 'Hola',
+            center: '',
+            results: []
         };
     }
+    // <Graphs/>
+    // <Map/>
 
     render(){
         return (
@@ -25,7 +30,14 @@ class Home extends Component {
                     <div className="hr-divider m-t m-b-md">
                         <h3 className="hr-divider-content hr-divider-heading">Información General</h3>
                     </div>
-                    <Graphs/>
+                    <div className="visual-container">
+                      <div className="left-visual-container">
+                        <Graphs/>
+                      </div>
+                      <div className="right-visual-container">
+                        <Map center={this.state.center} results={this.state.results}/>
+                      </div>
+                    </div>
                 </div>
             </div>
         );
