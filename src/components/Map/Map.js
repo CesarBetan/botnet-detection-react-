@@ -37,12 +37,16 @@ class Map extends Component {
 
     componentWillMount(){
         /* Create reference to messages in Firebase Database */
-        let messagesRef = Fire.database().ref('test_data').limitToLast(100);
-        messagesRef.on('child_added', snapshot => {
+        let messagesRef = Fire.database().ref('test_data');
+        messagesRef.limitToLast(3).on('child_added', snapshot => {
+            //console.log(snapshot.val());
             /* Update React state when message is added at Firebase Database */
             const message = snapshot.val();
-            this.setState({ results: [message].concat(this.state.results) });
-            //console.log(this.state.results)
+            if(this.state.results.length > 100){
+                this.setState({ results: [message].concat(this.state.results.pop()) });
+            }else{
+                this.setState({ results: [message].concat(this.state.results) });
+            }
         });
     }
 
@@ -71,12 +75,14 @@ class Map extends Component {
 
     placeMarkers() {
       let results = this.state.results
-      //console.log(results.length)
+      console.log(results.length)
       for(let i = 0; i < results.length; i++) {
+        console.log(results[i])
         let coordinates = {
-          lat: results[i].lat,
-          lng: results[i].lon
+          lat: Number(results[i].infoIp.lat),
+          lng: Number(results[i].infoIp.lon)
         };
+        console.log(coordinates)
         this.placeMarker(coordinates, results[i].name, false)
       }
     }

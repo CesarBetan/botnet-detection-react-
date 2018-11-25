@@ -30,18 +30,18 @@ const TableRow = (result) => {
                 <td>{regionName}</td>
                 <td>
                     {
-                        result.reasons.map(r =>
+                        result.reasons.map((r, i) =>
                             (
-                                <p>{r.reason}</p>
+                                <p key={i}>{r.reason}</p>
                             )
                         )
                     }
                 </td>
                 <td>
                     {
-                        result.reasons.map(r =>
+                        result.reasons.map((r, i) =>
                             (
-                                <p>{r.count}</p>
+                                <p key={i}>{r.count}</p>
                             )
                         )
                     }
